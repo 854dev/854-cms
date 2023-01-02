@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "es2015",
+        "pretty": true,
+        "sourceMap": true,
+        "outDir": "dist",
+        "importHelpers": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "removeComments": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "baseUrl": "./src",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "types": [
+            "node"
+        ]
+    }
+}
