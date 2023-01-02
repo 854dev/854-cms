@@ -1,4 +1,5 @@
-// import fs from "fs";
+import * as fs from "fs";
+
 // initEnvFile();
 // require("dotenv").config();
 // const express = require("express");
@@ -333,6 +334,7 @@
 // }
 
 function main() {
+  console.log("hELLO wORLD");
   // let sslParam = { rejectUnauthorized: false };
 
   // if (process.env.LOCAL_DEV && process.env.LOCAL_DEV == "true") {
