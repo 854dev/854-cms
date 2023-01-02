@@ -1,0 +1,22 @@
+{
+  "name": "854-cms",
+  "version": "0.0.1",
+  "description": "854 Node.js open source CMS",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/854dev/854-cms"
+  },
+  "author": "studio854",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/854dev/854-cms/issues"
+  },
+  "homepage": "https://studio854.com/",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "typescript": "^4.2.4"
+  }
+}
