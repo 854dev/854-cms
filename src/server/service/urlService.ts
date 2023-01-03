@@ -5,7 +5,7 @@ import { Express } from "express";
 const urlCache = new NodeCache();
 
 const urlService = {
-  startup: async (app: Express) => urlCache.flushAll(),
+  startup: async (app?: Express) => urlCache.flushAll(),
 
   addUrl: async (
     url: string,
