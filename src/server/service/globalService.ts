@@ -13,7 +13,7 @@ let isFrontEnd = false;
 let isPageBuilder = false;
 let path;
 
-export const global = {
+const global = {
   isBackEnd: function () {
     return window.location.pathname.startsWith("/admin");
   },
@@ -40,3 +40,5 @@ export const global = {
     isPageBuilder = isFrontEnd && is_authenticated;
   },
 };
+
+export default global;
