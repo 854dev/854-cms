@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import chalk from "chalk";
 
 // initEnvFile();
 // require("dotenv").config();
@@ -38,37 +39,29 @@ import * as fs from "fs";
 // const { Session } = require("./server/data/model/Session");
 // const { stringify } = require("yaml");
 
-// function start() {
-//   setupGlobalAppPath();
-
-//   setupStaticAssets(app);
-
-//   //1.2 handlebars
-//   setupHandlebars(app);
-
-//   // 1 cookieParser
-//   app.use(cookieParser());
-
-//   // 1.5 body parser
-//   // app.use(express.bodyParser());
-//   app.use(bodyParser.urlencoded({ extended: false }));
-//   app.use(bodyParser.json({ limit: "100mb" }));
-
-//   // 2 session
-//   // setupSessionFile(app);
-//   setupSessionDb(app);
-
-//   // 3 passport.initialize & 4 passport.session
-//   setupPassport(app);
-
-//   //4.5 graphql?
-//   setupGraphQL(app);
-
-//   // 5 app.router
-//   routes.loadRoutes(app);
-
-//   appListen(app);
-// }
+function start() {
+  console.log(chalk.blue.bgYellowBright("app start"));
+  //   setupGlobalAppPath();
+  //   setupStaticAssets(app);
+  //   //1.2 handlebars
+  //   setupHandlebars(app);
+  //   // 1 cookieParser
+  //   app.use(cookieParser());
+  //   // 1.5 body parser
+  //   // app.use(express.bodyParser());
+  //   app.use(bodyParser.urlencoded({ extended: false }));
+  //   app.use(bodyParser.json({ limit: "100mb" }));
+  //   // 2 session
+  //   // setupSessionFile(app);
+  //   setupSessionDb(app);
+  //   // 3 passport.initialize & 4 passport.session
+  //   setupPassport(app);
+  //   //4.5 graphql?
+  //   setupGraphQL(app);
+  //   // 5 app.router
+  //   routes.loadRoutes(app);
+  //   appListen(app);
+}
 
 // function appListen(app) {
 //   app.listen(port, () => {
@@ -366,6 +359,7 @@ function main() {
   //   console.log(logSymbols.success, "Successfully connected to Database!");
   //   start();
   // });
+  start();
 }
 
 main();

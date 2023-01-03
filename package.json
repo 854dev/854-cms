@@ -14,7 +14,7 @@
   },
   "homepage": "https://studio854.com/",
   "dependencies": {
-    "chalk": "^5.2.0",
+    "chalk": "^4.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node-cache": "^5.1.2",
