@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import chalk from "chalk";
+import { Express } from "express";
 
 // initEnvFile();
 // require("dotenv").config();
@@ -16,7 +17,7 @@ import chalk from "chalk";
 // var exphbs = require("express-handlebars");
 // var Handlebars = require("handlebars");
 // var logSymbols = require("log-symbols");
-// var globalService = require("./server/services/global.service");
+import globalService from "server/service/globalService";
 // var installService = require("./server/services/install.service");
 // var helperService = require("./server/services/helper.service");
 // initInstallIdFile();
@@ -25,7 +26,7 @@ import chalk from "chalk";
 // var appRoot = require("app-root-path");
 // var bodyParser = require("body-parser");
 // var cookieParser = require("cookie-parser");
-// const port = `${process.env.PORT}`;
+const port = `${process.env.PORT}`;
 // const frontEndTheme = `${process.env.FRONT_END_THEME}`;
 // const adminTheme = `${process.env.ADMIN_THEME}`;
 
@@ -63,20 +64,20 @@ function start() {
   //   appListen(app);
 }
 
-// function appListen(app) {
-//   app.listen(port, () => {
-//     var baseUrl = `http://localhost:${port}`;
-//     globalService.baseUrl = baseUrl;
+function appListen(app: Express) {
+  app.listen(port, () => {
+    var baseUrl = `http://localhost:${port}`;
+    globalService.baseUrl = baseUrl;
 
-//     console.log(chalk.cyan("Website at: ", baseUrl));
-//     console.log(chalk.cyan("Admin console at: ", baseUrl + "/admin"));
-//     console.log(chalk.cyan("GraphQL API at: ", baseUrl + "/graphql"));
+    console.log(chalk.cyan("Website at: ", baseUrl));
+    console.log(chalk.cyan("Admin console at: ", baseUrl + "/admin"));
+    console.log(chalk.cyan("GraphQL API at: ", baseUrl + "/graphql"));
 
-//     app.emit("started");
+    app.emit("started");
 
-//     installService.checkInstallation(app);
-//   });
-// }
+    // installService.checkInstallation(app);
+  });
+}
 
 // function setupGlobalAppPath() {
 //   global.appPAth = appRoot.path;
