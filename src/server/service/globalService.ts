@@ -1,6 +1,8 @@
+import { AxiosInstance } from "axios";
+
 let isAdminUserCreated: false;
-let axiosInstance;
-let baseUrl;
+let axiosInstance: AxiosInstance;
+let baseUrl: string;
 let moduleDefinitions = [];
 let moduleDefinitionsForColumns = [];
 let moduleCssFiles = [];
@@ -14,6 +16,10 @@ let isPageBuilder = false;
 let path;
 
 const global = {
+  isAdminUserCreated,
+  axiosInstance,
+  baseUrl,
+
   isBackEnd: function () {
     return window.location.pathname.startsWith("/admin");
   },
