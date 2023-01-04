@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "ESNext",
     "module": "NodeNext",
     "pretty": true,
