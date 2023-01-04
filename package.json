@@ -13,6 +13,9 @@
     "url": "https://github.com/854dev/854-cms/issues"
   },
   "homepage": "https://studio854.com/",
+  "scripts": {
+    "start": "yarn ts-node ./src/index.ts"
+  },
   "dependencies": {
     "axios": "^1.2.2",
     "chalk": "^4.1.0",
