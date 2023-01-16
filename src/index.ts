@@ -1,47 +1,48 @@
-import * as fs from "fs";
 import chalk from "chalk";
 import { Express } from "express";
+import app from "server/app";
+import figlet from "figlet";
+import restInit from "server/rest";
 
-// initEnvFile();
-// require("dotenv").config();
-// const express = require("express");
-// const graphqlHTTP = require("express-graphql");
-// const schema = require("./server/schema/schema");
-// const session = require("express-session");
-// const app = express();
-// const { request, gql } = require("graphql-request");
-// const path = require("path");
-// const chalk = require("chalk");
-// const _ = require("lodash");
-// // var FileStore = require("session-file-store")(session);
-// var exphbs = require("express-handlebars");
-// var Handlebars = require("handlebars");
-// var logSymbols = require("log-symbols");
-import globalService from "server/service/globalService";
-// var installService = require("./server/services/install.service");
-// var helperService = require("./server/services/helper.service");
-// initInstallIdFile();
+const port = process.env.PORT ?? 3018;
 
-// const routes = require("./server/boot/routes.js");
-// var appRoot = require("app-root-path");
-// var bodyParser = require("body-parser");
-// var cookieParser = require("cookie-parser");
-const port = `${process.env.PORT}`;
-// const frontEndTheme = `${process.env.FRONT_END_THEME}`;
-// const adminTheme = `${process.env.ADMIN_THEME}`;
+function appListen(app: Express) {
+  app.listen(port, () => {
+    const baseUrl = `http://localhost:${port}`;
+    // globalService.baseUrl = baseUrl;
 
-// const passport = require("passport");
-// LocalStrategy = require("passport-local").Strategy;
+    console.log(chalk.cyan("Website at: ", baseUrl));
+    // console.log(chalk.cyan("Admin console at: ", baseUrl + "/admin"));
+    // console.log(chalk.cyan("GraphQL API at: ", baseUrl + "/graphql"));
 
-// const typeorm = require("typeorm");
-// const { getConnection } = require("typeorm");
-// const { TypeormStore } = require("connect-typeorm");
-
-// const { Session } = require("./server/data/model/Session");
-// const { stringify } = require("yaml");
+    app.emit("started");
+  });
+}
 
 function start() {
-  console.log(chalk.blue.bgYellowBright("app start"));
+  console.log(chalk.blue.bgYellowBright("app starts..."));
+  console.log(
+    figlet.textSync("854", {
+      font: "Star Wars",
+      horizontalLayout: "full",
+      verticalLayout: "default",
+      width: 80,
+      whitespaceBreak: true,
+    })
+  );
+  console.log(chalk.blue("-------------------------*"));
+
+  console.log(
+    figlet.textSync("blog", {
+      font: "Star Wars",
+      horizontalLayout: "full",
+      verticalLayout: "default",
+      width: 80,
+      whitespaceBreak: true,
+    })
+  );
+
+  restInit(app);
   //   setupGlobalAppPath();
   //   setupStaticAssets(app);
   //   //1.2 handlebars
@@ -62,21 +63,7 @@ function start() {
   //   // 5 app.router
   //   routes.loadRoutes(app);
   //   appListen(app);
-}
-
-function appListen(app: Express) {
-  app.listen(port, () => {
-    var baseUrl = `http://localhost:${port}`;
-    globalService.baseUrl = baseUrl;
-
-    console.log(chalk.cyan("Website at: ", baseUrl));
-    console.log(chalk.cyan("Admin console at: ", baseUrl + "/admin"));
-    console.log(chalk.cyan("GraphQL API at: ", baseUrl + "/graphql"));
-
-    app.emit("started");
-
-    // installService.checkInstallation(app);
-  });
+  appListen(app);
 }
 
 // function setupGlobalAppPath() {
@@ -328,7 +315,6 @@ function appListen(app: Express) {
 // }
 
 function main() {
-  console.log("hELLO wORLD");
   // let sslParam = { rejectUnauthorized: false };
 
   // if (process.env.LOCAL_DEV && process.env.LOCAL_DEV == "true") {
