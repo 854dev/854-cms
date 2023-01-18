@@ -14,7 +14,7 @@
   },
   "homepage": "https://studio854.com/",
   "scripts": {
-    "start": "yarn ts-node ./src/index.ts"
+    "start": "yarn ts-node ./index.ts"
   },
   "dependencies": {
     "axios": "^1.2.2",
@@ -38,6 +38,7 @@
     "@types/uuid": "^3.4.3",
     "@types/winston": "^2.3.7",
     "nodemon": "^2.0.20",
-    "typescript": "^4.2.4"
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^4.9.4"
   }
 }
