@@ -16,5 +16,14 @@
   /* ES린트 경고문을 항상 띄운다 */
   "eslint.alwaysShowStatus": true,
   /* ES린트 작업경로 지정. 프로젝트 내 설정파일 기준으로 린팅 */
-  "eslint.workingDirectories": ["."]
+  "eslint.workingDirectories": ["."],
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "sdf",
+      "database": "${workspaceFolder:854-cms}/data.sqlite"
+    }
+  ]
 }
