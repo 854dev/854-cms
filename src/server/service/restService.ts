@@ -12,14 +12,6 @@ function createRest<T extends { id?: any }>(
 ) {
   const { resourceName } = option;
   const resourceEntity = entityMap[resourceName];
-
-  console.log(datasource.isInitialized);
-  console.log(datasource.options.entities);
-
-  console.log(resourceEntity);
-  console.log(resourceEntity);
-  console.log(resourceEntity);
-  console.log(resourceEntity);
   const repository = datasource.getRepository(resourceEntity);
 
   /** DAL SERVICE */
@@ -68,6 +60,7 @@ function createRest<T extends { id?: any }>(
   /** ROUTE - POST */
   app.post(`/${resourceName}/`, async (req, res) => {
     const { body } = req;
+    console.log("POST:", body);
     const result = await dalServices.post(body);
     res.send({ hello: "POST" });
   });
