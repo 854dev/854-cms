@@ -1,9 +1,12 @@
+import "reflect-metadata";
+
 import chalk from "chalk";
 import { Express } from "express";
 import figlet from "figlet";
 // import restInit from "server/rest";
 import app from "server/app";
-import restInit from "server/rest/index";
+import restInit from "server/service/restService";
+import AppDataSource from "data/data-source";
 
 const port = process.env.PORT ?? 3018;
 
@@ -15,9 +18,11 @@ function appListen(app: Express) {
   });
 }
 
-function start(app: Express) {
+async function start(app: Express) {
+  const ds = await AppDataSource.initialize();
+
   /** SERVICE INIT */
-  restInit(app);
+  restInit(app, ds);
   appListen(app);
 
   /** START MESSAGE */

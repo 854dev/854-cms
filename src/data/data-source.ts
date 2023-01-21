@@ -1,12 +1,12 @@
-import "reflect-metadata";
 import { DataSource } from "typeorm";
+import entityMap from "./entityMap";
 
 const AppDataSource = new DataSource({
   type: "sqlite",
   database: "./data.sqlite",
   synchronize: true,
   logging: false,
-  entities: ["./entity/*.ts"],
+  entities: Object.values(entityMap),
   migrations: [],
   subscribers: [],
 });
