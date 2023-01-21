@@ -2,7 +2,7 @@
   "name": "854-cms",
   "version": "0.0.1",
   "description": "854 Node.js open source CMS",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/854dev/854-cms"
@@ -14,7 +14,7 @@
   },
   "homepage": "https://studio854.com/",
   "scripts": {
-    "start": "yarn ts-node ./index.ts"
+    "start": "yarn ts-node ./src/index.ts"
   },
   "dependencies": {
     "axios": "^1.2.2",
