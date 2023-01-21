@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
+import Joi from "joi";
+
 @Entity()
 export class Content {
   @PrimaryGeneratedColumn("uuid")
@@ -34,3 +36,10 @@ export class Content {
   @Column()
   url: string;
 }
+
+export const ContentValidator = Joi.object({
+  data: Joi.string(),
+  contentTypeId: Joi.string(),
+  createdByUserId: Joi.string(),
+  lastUpdatedByUserId: Joi.string(),
+});

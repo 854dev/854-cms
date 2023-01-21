@@ -6,14 +6,14 @@ export default (app: Express) => {
 
   app.get("/playground", async (req, res) => {
     const reqest = await axios.post("http://localhost:3018/user", {
-      username: "hello",
+      // username: "hello",
       salt: "hello",
       hash: "hello",
       profile: "hello",
     });
     // console.log(reqest);
 
-    res.json({ status: "ok" });
+    res.json(reqest.data);
   });
 
   console.log("playGround Service end");

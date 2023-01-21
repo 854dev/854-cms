@@ -7,6 +7,8 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
+import Joi from "joi";
+
 @Unique(["username"])
 @Entity()
 export class User {
@@ -33,3 +35,10 @@ export class User {
   @UpdateDateColumn()
   updatedOn: Date;
 }
+
+export const UserValidator = Joi.object({
+  username: Joi.string(),
+  salt: Joi.string(),
+  hash: Joi.string(),
+  profile: Joi.number(),
+});

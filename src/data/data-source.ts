@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import entityMap from "./entityMap";
+import { entityMap } from "./entityMap";
 
 const AppDataSource = new DataSource({
   type: "sqlite",

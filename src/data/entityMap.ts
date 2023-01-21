@@ -1,12 +1,15 @@
-import { User } from "data/entity/User";
-import { Content } from "data/entity/Content";
+import { User, UserValidator } from "data/entity/User";
+import { Content, ContentValidator } from "data/entity/Content";
 
-const entityMap = {
+export const entityMap = {
   User: User,
   Content: Content,
 } as const;
 
-export default entityMap;
+export const validatorMap = {
+  User: UserValidator,
+  Content: ContentValidator,
+} as const;
 
 export type EntityMap = {
   User: User;
