@@ -7,6 +7,7 @@ import figlet from "figlet";
 import app from "server/app";
 import restInit from "server/service/restService";
 import AppDataSource from "data/data-source";
+import playGroundService from "server/service/playGroundService";
 
 const port = process.env.PORT ?? 3018;
 
@@ -23,6 +24,7 @@ async function start(app: Express) {
 
   /** SERVICE INIT */
   restInit(app, ds);
+  playGroundService(app);
   appListen(app);
 
   /** START MESSAGE */
