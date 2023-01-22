@@ -26,21 +26,14 @@ function createRest<T extends { id?: any }>(
       return result;
     },
     post: (form: T) => {
-      // TODO form 이 엔티티 저장에 필요한 데이터는 다갖고 있는지?
-
-      /** 해당 자원을 DB에 등록 */
       const entity = Object.assign(repository, form);
       repository.save(entity);
     },
     put: (form: T) => {
-      // TODO form 이 엔티티 저장에 필요한 데이터는 다갖고 있는지?
-      if (form.id) {
-        const entity = Object.assign(repository, form);
-        repository.save(entity);
-      }
+      const entity = Object.assign(repository, form);
+      repository.save(entity);
     },
     delete: (id: string) => {
-      /** 해당 자원을 DB에서 삭제 */
       repository.softDelete(id);
     },
   };
@@ -75,6 +68,13 @@ function createRest<T extends { id?: any }>(
   /** ROUTE - PUT */
   app.put(`/${resourceName}/:resourceId/`, async (req, res) => {
     const { body } = req;
+
+    const validateResult = validator.validate(body);
+    if (validateResult.error) {
+      res.send({ hello: "INVALID DATA" });
+      return;
+    }
+
     const result = await dalServices.put(body);
     res.send({ hello: "put" });
   });
