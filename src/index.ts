@@ -5,7 +5,7 @@ import { Express } from "express";
 import figlet from "figlet";
 // import restInit from "server/rest";
 import app from "server/app";
-import restInit from "server/service/restService";
+// import restInit from "server/service/restService";
 import AppDataSource from "data/data-source";
 import playGroundService from "server/service/playGroundService";
 
@@ -23,7 +23,7 @@ async function start(app: Express) {
   const ds = await AppDataSource.initialize();
 
   /** SERVICE INIT */
-  restInit(app, ds);
+  // restInit(app, ds);
   playGroundService(app);
   appListen(app);
 
