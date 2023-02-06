@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { DataSource } from "typeorm";
 
-import { entityMap, validatorMap, EntityMap } from "data/entityMap";
+import { entityMap, EntityMap } from "data/entityMap";
 
 function createRest<T extends { id?: any }>(
   option: {
@@ -13,7 +13,6 @@ function createRest<T extends { id?: any }>(
   const { resourceName } = option;
   const resourceEntity = entityMap[resourceName];
   const repository = datasource.getRepository(resourceEntity);
-  const validator = validatorMap[resourceName];
 
   /** DAL SERVICE */
   const dalServices = {
@@ -55,12 +54,6 @@ function createRest<T extends { id?: any }>(
   app.post(`/${resourceName}/`, async (req, res) => {
     const { body } = req;
 
-    const validateResult = validator.validate(body);
-    if (validateResult.error) {
-      res.send({ hello: "INVALID DATA" });
-      return;
-    }
-
     const result = await dalServices.post(body);
     res.send({ hello: "POST" });
   });
@@ -68,12 +61,6 @@ function createRest<T extends { id?: any }>(
   /** ROUTE - PUT */
   app.put(`/${resourceName}/:resourceId/`, async (req, res) => {
     const { body } = req;
-
-    const validateResult = validator.validate(body);
-    if (validateResult.error) {
-      res.send({ hello: "INVALID DATA" });
-      return;
-    }
 
     const result = await dalServices.put(body);
     res.send({ hello: "put" });
