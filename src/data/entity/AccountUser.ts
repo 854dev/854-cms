@@ -1,9 +1,10 @@
 import { Entity, EntitySchema } from "typeorm";
+import { createdUpdated } from "data/entity/common";
 
 const schema = {
   name: "account_user",
   columns: {
-    user_id: {
+    id: {
       type: "int",
       primary: true,
       generated: true,
@@ -17,11 +18,7 @@ const schema = {
       type: "varchar",
       nullable: false,
     },
-    date_joined: {
-      type: "varchar",
-      createDate: true,
-      default: () => "CURRENT_TIMESTAMP",
-    },
+    ...createdUpdated,
   },
 } as const;
 

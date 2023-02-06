@@ -1,10 +1,7 @@
-import { AccountUser, account_profile } from "data/entity/AccountUser";
-// import { Content, ContentValidator } from "data/entity/Content";
+import { AccountUser } from "data/entity/AccountUser";
+import { AccountProfile } from "./entity/AccountProfile";
 
-export const entityMap = {
-  User: User,
-  // Content: Content,
-} as const;
+export const entityMap = { AccountUser, AccountProfile } as const;
 
 // export const validatorMap = {
 //   User: UserValidator,
