@@ -9,6 +9,7 @@ export const createdUpdated: EntitySchemaOptions<any>["columns"] = {
   updated_at: {
     type: "varchar",
     updateDate: true,
-    default: () => "",
+    nullable: true,
+    default: () => null,
   },
 };
