@@ -1,45 +1,41 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import { EntitySchema } from "typeorm";
 
-import Joi from "joi";
+const schema = {
+  name: "content",
+  columns: {
+    id: {
+      type: "int",
+      primary: true,
+      generated: true,
+    },
+    data: {
+      type: "varchar",
+      nullable: false,
+    },
+    contentTypeId: {
+      type: "int",
+      nullable: true,
+    },
+    createdByUserId: {
+      type: "bool",
+      nullable: false,
+      default: false,
+    },
+    lastUpdatedByUserId: {
+      type: "varchar",
+      unique: true,
+      nullable: false,
+    },
+    createdOn: {
+      type: "varchar",
+      nullable: true,
+    },
+    updatedOn: {
+      type: "varchar",
+      unique: true,
+      nullable: false,
+    },
+  },
+} as const;
 
-@Entity()
-export class Content {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
-
-  @Column("varchar")
-  data: string;
-
-  @Column("varchar")
-  contentTypeId: string;
-
-  @Column("uuid")
-  createdByUserId: string;
-
-  @Column("uuid")
-  lastUpdatedByUserId: string;
-
-  @Column()
-  @CreateDateColumn()
-  createdOn: Date;
-
-  @Column()
-  @UpdateDateColumn()
-  updatedOn: Date;
-
-  @Column()
-  url: string;
-}
-
-export const ContentValidator = Joi.object({
-  data: Joi.string(),
-  contentTypeId: Joi.string(),
-  createdByUserId: Joi.string(),
-  lastUpdatedByUserId: Joi.string(),
-});
+export const Entity = new EntitySchema(schema);

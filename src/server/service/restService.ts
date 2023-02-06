@@ -91,11 +91,11 @@ function createRest<T extends { id?: any }>(
 
 const restInit = (app: Express, datasource: DataSource) => {
   const userRest = createRest({ resourceName: "User" }, app, datasource);
-  const contentRest = createRest({ resourceName: "Content" }, app, datasource);
+  // const contentRest = createRest({ resourceName: "Content" }, app, datasource);
 
   return {
     userRest,
-    contentRest,
+    // contentRest,
   };
 };
 
