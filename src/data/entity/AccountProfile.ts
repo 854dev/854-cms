@@ -1,7 +1,7 @@
 import { Entity, EntitySchema } from "typeorm";
 import { createdUpdated } from "data/entity/common";
 
-const schema = {
+const schema: EntitySchema["options"] = {
   name: "account_profile",
   columns: {
     id: {
@@ -27,6 +27,12 @@ const schema = {
       nullable: true,
     },
     ...createdUpdated,
+  },
+  relations: {
+    categories: {
+      type: "one-to-one",
+      target: "account_user",
+    },
   },
 } as const;
 

@@ -1,7 +1,7 @@
 import { Entity, EntitySchema } from "typeorm";
 import { createdUpdated } from "data/entity/common";
 
-const schema = {
+const schema: EntitySchema["options"] = {
   name: "account_user",
   columns: {
     id: {
