@@ -37,6 +37,7 @@ const schema: EntitySchema["options"] = {
         referencedColumnName: "id",
       },
       cascade: true,
+      createForeignKeyConstraints: true,
     },
   },
 } as const;
