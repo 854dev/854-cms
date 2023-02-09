@@ -1,5 +1,5 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "powermode.combo.counterEnabled": "show",
   "powermode.combo.timeout": 2,
   "powermode.combo.counterSize": 4,
@@ -16,7 +16,9 @@
   /* ES린트 경고문을 항상 띄운다 */
   "eslint.alwaysShowStatus": true,
   /* ES린트 작업경로 지정. 프로젝트 내 설정파일 기준으로 린팅 */
-  "eslint.workingDirectories": ["."],
+  "eslint.workingDirectories": [
+    "."
+  ],
   "sqltools.useNodeRuntime": true,
   "sqltools.connections": [
     {
@@ -25,5 +27,12 @@
       "name": "sdf",
       "database": "${workspaceFolder:854-cms}/data.sqlite"
     }
-  ]
+  ],
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "eslint.nodePath": ".yarn/sdks",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
