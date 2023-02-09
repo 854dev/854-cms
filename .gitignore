@@ -1,36 +1,35 @@
-*.csv
-*.dat
-*.iml
+# compiled output
+/dist
+/node_modules
+
+# Logs
+logs
 *.log
-*.out
-*.pid
-*.seed
-*.sublime-*
-*.swo
-*.swp
-*.tgz
-*.xml
-*.env
-*.env-backup
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
 .DS_Store
-.idea
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
 .project
-.strong-pm
-coverage
-node_modules
-npm-debug.log
-admin/e2e/puppeteer/screenshots/*.png
-server/storage/container1/*
-server/storage/files/height*
-server/storage/files/width*
-server/data/data.sqlite
-data-user.json
-sonicjscom-deploy.sh
-tests/cypress/screenshots
-tests/cypress/videos
-server/temp/*
-server/data/config/installId.json
-backups/*.zip
-backups/temp/*
-cypress/screenshots
-cypress/videos
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
