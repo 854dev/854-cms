@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsOptional,
   IsString,
   Matches,
   MaxLength,
@@ -23,9 +24,11 @@ export class CreateAccountDto {
 
   @IsString()
   @MaxLength(100)
-  first_name: string;
+  @IsOptional()
+  first_name?: string;
 
   @IsString()
   @MaxLength(100)
-  last_name: string;
+  @IsOptional()
+  last_name?: string;
 }
