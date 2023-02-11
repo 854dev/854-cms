@@ -1,3 +1,4 @@
+import { join } from 'path';
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
@@ -13,10 +14,9 @@ export const AppDataSource = new DataSource({
   dropSchema: false,
   keepConnectionAlive: true,
   logging: process.env.NODE_ENV !== 'production',
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  entities: [join('src', '**', '*.entity.ts')],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
   cli: {
-    entitiesDir: 'src',
     migrationsDir: 'src/database/migrations',
     subscribersDir: 'subscriber',
   },
