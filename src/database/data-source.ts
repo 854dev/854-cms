@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import entityMap from './entity-map';
+import migrations from './migration-map';
+
 export const AppDataSource = new DataSource({
   type: process.env.DATABASE_TYPE,
   url: process.env.DATABASE_URL,
@@ -14,7 +16,7 @@ export const AppDataSource = new DataSource({
   keepConnectionAlive: true,
   logging: process.env.NODE_ENV !== 'production',
   entities: Object.values(entityMap),
-  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+  migrations: migrations,
   extra: {
     // based on https://node-postgres.com/api/pool
     // max connection pool size
