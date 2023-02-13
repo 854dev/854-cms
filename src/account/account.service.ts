@@ -1,12 +1,31 @@
-import { Injectable, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { Profile } from './entities/profile.entity';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class AccountService {
-  @UsePipes(ValidationPipe)
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+    @InjectRepository(Profile)
+    private profileRepository: Repository<Profile>
+  ) {
+    return;
+  }
+
   create(createAccountDto: CreateAccountDto) {
-    return 'This action adds a new account';
+    const { user, profile } = createAccountDto;
+
+    this.usersRepository.save(this.usersRepository.create(user));
+
+    if (profile) {
+      this.profileRepository.save(this.profileRepository.create(profile));
+    }
+    return `user crated : ${user.username}`;
   }
 
   findAll() {
