@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { User } from './entities/user.entity';
+import { EntityCondition } from './util/types/entity-condition';
 
 @Injectable()
 export class AccountService {
@@ -23,15 +24,22 @@ export class AccountService {
     return `This action returns all account`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} account`;
+  findOne(fields: EntityCondition<User>) {
+    return this.usersRepository.findOne({
+      where: fields,
+    });
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
-    return `This action updates a #${id} account`;
+  update(id: number, updateProfileDto: UpdateAccountDto) {
+    return this.usersRepository.save(
+      this.usersRepository.create({
+        id,
+        ...updateProfileDto,
+      })
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} account`;
+  async softDelete(id: number): Promise<void> {
+    await this.usersRepository.softDelete(id);
   }
 }
