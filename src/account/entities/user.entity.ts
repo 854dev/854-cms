@@ -43,10 +43,16 @@ export class User extends BaseEntity {
     }
   }
 
-  @Column()
+  @Column({
+    type: String,
+    nullable: true,
+  })
   firstName: string;
 
-  @Column()
+  @Column({
+    type: String,
+    nullable: true,
+  })
   lastName: string;
 
   @CreateDateColumn()
