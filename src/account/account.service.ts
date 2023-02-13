@@ -5,6 +5,7 @@ import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { User } from './entities/user.entity';
 import { EntityCondition } from './util/types/entity-condition';
+import { IPaginationOptions } from './util/types/pagination-option';
 
 @Injectable()
 export class AccountService {
@@ -20,8 +21,11 @@ export class AccountService {
     return `user crated : ${createAccountDto.username}`;
   }
 
-  findAll() {
-    return `This action returns all account`;
+  findManyWithPagination(paginationOptions: IPaginationOptions) {
+    return this.usersRepository.find({
+      skip: (paginationOptions.page - 1) * paginationOptions.limit,
+      take: paginationOptions.limit,
+    });
   }
 
   findOne(fields: EntityCondition<User>) {

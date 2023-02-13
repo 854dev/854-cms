@@ -6,10 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ParseIntPipe,
+  Query,
+  HttpCode,
+  DefaultValuePipe,
+  HttpStatus,
 } from '@nestjs/common';
 import { AccountService } from './account.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { infinityPagination } from './util/infinity-pagination';
 
 @Controller('account')
 export class AccountController {
@@ -21,13 +28,27 @@ export class AccountController {
   }
 
   @Get()
-  findAll() {
-    return this.accountService.findAll();
+  @HttpCode(HttpStatus.OK)
+  async findAll(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number
+  ) {
+    if (limit > 50) {
+      limit = 50;
+    }
+
+    return infinityPagination(
+      await this.accountService.findManyWithPagination({
+        page,
+        limit,
+      }),
+      { page, limit }
+    );
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.accountService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.accountService.findOne({ id });
   }
 
   @Patch(':id')
@@ -36,7 +57,7 @@ export class AccountController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.accountService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.accountService.softDelete(+id);
   }
 }
