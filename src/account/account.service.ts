@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { User } from './entities/user.entity';
-import { EntityCondition } from './util/types/entity-condition';
-import { IPaginationOptions } from './util/types/pagination-option';
+import { EntityCondition } from 'src/util/types/entity-condition';
+import { IPaginationOptions } from 'src/util/types/pagination-option';
 
 @Injectable()
 export class AccountService {
