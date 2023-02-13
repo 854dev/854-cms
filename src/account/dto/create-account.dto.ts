@@ -5,23 +5,9 @@ import {
   Matches,
   MaxLength,
   MinLength,
-  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
 
-export class ProfileDto {
-  @IsString()
-  @MaxLength(100)
-  @IsOptional()
-  first_name?: string;
-
-  @IsString()
-  @MaxLength(100)
-  @IsOptional()
-  last_name?: string;
-}
-
-export class UserDto {
+export class CreateAccountDto {
   @IsString()
   @MinLength(4)
   @MaxLength(20)
@@ -35,15 +21,14 @@ export class UserDto {
     message: 'password only accepts english and number',
   })
   password: string;
-}
 
-export class CreateAccountDto {
-  @Type(() => UserDto)
-  @ValidateNested()
-  user: UserDto;
-
-  @Type(() => ProfileDto)
-  @ValidateNested()
+  @IsString()
+  @MaxLength(100)
   @IsOptional()
-  profile?: ProfileDto;
+  first_name?: string;
+
+  @IsString()
+  @MaxLength(100)
+  @IsOptional()
+  last_name?: string;
 }
