@@ -48,13 +48,13 @@ export class User extends BaseEntity {
     type: String,
     nullable: true,
   })
-  firstName: string;
+  firstName?: string | null;
 
   @Column({
     type: String,
     nullable: true,
   })
-  lastName: string;
+  lastName?: string | null;
 
   @CreateDateColumn()
   createdAt: Date;
