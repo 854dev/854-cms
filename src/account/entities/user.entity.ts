@@ -27,6 +27,10 @@ export class User extends BaseEntity {
   @Exclude({ toPlainOnly: true })
   password: string;
 
+  @Column({ select: false })
+  @Exclude({ toPlainOnly: true })
+  salt: string;
+
   @Exclude({ toPlainOnly: true })
   public previousPassword: string;
 
@@ -40,6 +44,7 @@ export class User extends BaseEntity {
   async setPassword() {
     if (this.previousPassword !== this.password && this.password) {
       const salt = await bcrypt.genSalt();
+      this.salt = salt;
       this.password = await bcrypt.hash(this.password, salt);
     }
   }
