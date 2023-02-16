@@ -8,11 +8,10 @@ import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/db-config-service';
 import { DataSource } from 'typeorm';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
-    AccountModule,
-    ContentModule,
     ConfigModule.forRoot({ isGlobal: true, load: [databaseConfig] }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
@@ -21,6 +20,9 @@ import { DataSource } from 'typeorm';
         return dataSource;
       },
     }),
+    AccountModule,
+    ContentModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
