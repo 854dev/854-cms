@@ -48,6 +48,12 @@ export class User extends BaseEntity {
     type: String,
     nullable: true,
   })
+  nickname?: string | null;
+
+  @Column({
+    type: String,
+    nullable: true,
+  })
   firstName?: string | null;
 
   @Column({
