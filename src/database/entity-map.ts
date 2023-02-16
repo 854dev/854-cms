@@ -3,7 +3,7 @@ import { CommonCode } from 'src/common/entities/common-code.entity';
 import { ContentBody } from 'src/content/entities/content-body.entity';
 import { ContentCore } from 'src/content/entities/content-core.entity';
 import { ContentMeta } from 'src/content/entities/content-meta.entity';
-import { ContentTypeField } from 'src/content/entities/content-type-field.entity';
+import { ContentBodyField } from 'src/content/entities/content-body-field.entity';
 import { ContentType } from 'src/content/entities/content-type.entity';
 
 const entityMap = {
@@ -12,7 +12,7 @@ const entityMap = {
     ContentBody,
     ContentCore,
     ContentMeta,
-    ContentTypeField,
+    ContentBodyField,
     ContentType,
   ],
   common: [CommonCode],
