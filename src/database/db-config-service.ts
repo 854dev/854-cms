@@ -20,7 +20,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       dropSchema: false,
       keepConnectionAlive: true,
       logging: this.configService.get('app.nodeEnv') !== 'production',
-      entities: Object.values(entityMap),
+      entities: [...entityMap.account, ...entityMap.content],
       migrations: [],
       cli: {
         entitiesDir: 'src',
