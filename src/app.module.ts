@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/db-config-service';
 import { DataSource } from 'typeorm';
 import { CommonModule } from './common/common.module';
+import { ContentTypeModule } from './content-type/content-type.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CommonModule } from './common/common.module';
     AccountModule,
     ContentModule,
     CommonModule,
+    ContentTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
