@@ -9,9 +9,10 @@ export class ContentBody {
   @JoinColumn()
   contentId: number;
 
-  @Column({ type: 'varchar', length: 100 })
-  type_name: string;
+  @Column({ type: 'int' })
+  @JoinColumn()
+  typeId: number;
 
   @Column({ type: 'text' })
-  type_value: string;
+  typeValue: string;
 }
