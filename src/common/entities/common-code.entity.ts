@@ -1,8 +1,8 @@
 import { Transform } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class Code {
+@Entity('common_code')
+export class CommonCode {
   @PrimaryGeneratedColumn()
   id: number;
 

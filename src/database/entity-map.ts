@@ -1,4 +1,5 @@
 import { User } from 'src/account/entities/user.entity';
+import { CommonCode } from 'src/common/entities/common-code.entity';
 import { ContentBody } from 'src/content/entities/content-body.entity';
 import { ContentCore } from 'src/content/entities/content-core.entity';
 import { ContentMeta } from 'src/content/entities/content-meta.entity';
@@ -14,6 +15,7 @@ const entityMap = {
     ContentTypeField,
     ContentType,
   ],
+  common: [CommonCode],
 } as const;
 
 export default entityMap;
