@@ -7,8 +7,11 @@ export class ContentBodyField {
 
   @JoinColumn()
   @Column({ type: 'int' })
-  typeId: number;
+  contentTypeId: number;
+
+  @Column({ type: 'int' })
+  fieldTypeId: number;
 
   @Column({ type: 'varchar', length: 100 })
-  name: string;
+  fieldName: string;
 }

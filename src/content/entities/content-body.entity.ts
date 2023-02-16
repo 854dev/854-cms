@@ -11,8 +11,8 @@ export class ContentBody {
 
   @Column({ type: 'int' })
   @JoinColumn()
-  typeId: number;
+  bodyFieldId: number;
 
   @Column({ type: 'text' })
-  typeValue: string;
+  bodyFieldValue: string;
 }

@@ -8,6 +8,7 @@ import { migration1676523948419 } from './migrations/1676523948419-migration';
 import { migration1676530928218 } from './migrations/1676530928218-migration';
 import { migration1676532126169 } from './migrations/1676532126169-migration';
 import { migration1676533822687 } from './migrations/1676533822687-migration';
+import { migration1676537033106 } from './migrations/1676537033106-migration';
 
 const migrations = [
   migration1676267856094,
@@ -20,6 +21,7 @@ const migrations = [
   migration1676530928218,
   migration1676532126169,
   migration1676533822687,
+  migration1676537033106,
 ];
 
 export default migrations;
