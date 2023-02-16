@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { ContentCore } from './content-core.entity';
+import { ContentCore } from '../../content/entities/content-core.entity';
 
 @Entity('content_type')
 export class ContentType {
