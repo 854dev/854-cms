@@ -1,5 +1,6 @@
-import { Column, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinColumn } from 'typeorm';
 
+@Entity('content_body')
 export class ContentBody {
   @JoinColumn()
   id: number;
