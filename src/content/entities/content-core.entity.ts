@@ -1,4 +1,10 @@
-import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ContentMeta } from './content-meta.entity';
 
 @Entity('content_core')
@@ -10,6 +16,7 @@ export class ContentCore {
   })
   id: number;
 
+  @Column({ type: 'int' })
   @JoinColumn()
   typeId: number;
 }

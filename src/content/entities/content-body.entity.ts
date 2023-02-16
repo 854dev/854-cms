@@ -5,6 +5,7 @@ export class ContentBody {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: 'int' })
   @JoinColumn()
   contentId: number;
 
