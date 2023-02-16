@@ -1,10 +1,10 @@
 import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Meta } from './meta.entity';
+import { ContentMeta } from './content-meta.entity';
 
 @Entity('content_core')
-export class Core {
+export class ContentCore {
   @PrimaryGeneratedColumn()
-  @OneToOne(() => Meta, (meta) => meta.id, {
+  @OneToOne(() => ContentMeta, (contentMeta) => contentMeta.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })

@@ -1,6 +1,6 @@
 import { Column, JoinColumn } from 'typeorm';
 
-export class Body {
+export class ContentBody {
   @JoinColumn()
   id: number;
 

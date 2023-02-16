@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity('content_meta')
-export class Meta {
+export class ContentMeta {
   @PrimaryGeneratedColumn()
   id: number;
 

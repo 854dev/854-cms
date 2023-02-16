@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('content_type_field')
-export class TypeField {
+export class ContentTypeField {
   @PrimaryGeneratedColumn()
   id: number;
 

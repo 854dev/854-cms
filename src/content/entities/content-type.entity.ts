@@ -1,10 +1,10 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Core } from './core.entity';
+import { ContentCore } from './content-core.entity';
 
 @Entity('content_type')
-export class TypeField {
+export class ContentType {
   @PrimaryGeneratedColumn()
-  @OneToMany(() => Core, (core) => core.id, {
+  @OneToMany(() => ContentCore, (contentCore) => contentCore.id, {
     nullable: false,
     onDelete: 'CASCADE',
   })
