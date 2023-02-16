@@ -25,10 +25,10 @@ export class CreateAccountDto {
   @IsString()
   @MaxLength(100)
   @IsOptional()
-  first_name?: string;
+  firstName?: string;
 
   @IsString()
   @MaxLength(100)
   @IsOptional()
-  last_name?: string;
+  lastName?: string;
 }
