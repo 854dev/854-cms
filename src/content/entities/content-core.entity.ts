@@ -18,5 +18,5 @@ export class ContentCore {
 
   @Column({ type: 'int' })
   @JoinColumn()
-  typeId: number;
+  contentTypeId: number;
 }
