@@ -9,4 +9,4 @@ import { ContentBodyField } from './entities/content-body-field.entity';
   controllers: [ContentBodyFieldController],
   providers: [ContentBodyFieldService],
 })
-export class ContentTypeModule {}
+export class ContentBodyFieldModule {}
