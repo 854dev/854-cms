@@ -1,4 +1,18 @@
-import { IsInt, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsInt,
+  IsString,
+  MaxLength,
+  MinLength,
+  ValidateNested,
+} from 'class-validator';
+
+class ContentBodyDto {
+  @IsInt()
+  bodyFieldId: number;
+
+  @IsString()
+  fieldValue: string;
+}
 
 export class CreateContentDto {
   // type
@@ -23,5 +37,6 @@ export class CreateContentDto {
 
   // body
   // TODO 별도 validator 로 검증
-  body: any;
+  @ValidateNested()
+  body: ContentBodyDto[];
 }

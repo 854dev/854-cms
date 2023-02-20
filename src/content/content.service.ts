@@ -5,7 +5,9 @@ import { UpdateContentDto } from './dto/update-content.dto';
 import { ContentCore } from './entities/content-core.entity';
 import { ContentBody } from './entities/content-body.entity';
 import { ContentMeta } from './entities/content-meta.entity';
-import { ContentBodyField } from '../content-type/entities/content-body-field.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { IPaginationOptions } from 'src/util/types/pagination-option';
 
 /**
  *  콘텐츠 등록순서
@@ -18,23 +20,53 @@ import { ContentBodyField } from '../content-type/entities/content-body-field.en
 
 @Injectable()
 export class ContentService {
-  create(createContentDto: CreateContentDto) {
-    return 'This action adds a new content';
+  constructor(
+    @InjectRepository(ContentCore)
+    private coreRepository: Repository<ContentCore>,
+    @InjectRepository(ContentBody)
+    private bodyRepository: Repository<ContentBody>,
+    @InjectRepository(ContentMeta)
+    private metaRepository: Repository<ContentMeta>
+  ) {
+    return;
   }
 
-  findAll() {
-    return `This action returns all content`;
+  async create(createContentDto: CreateContentDto) {
+    // core
+    const { contentTypeId, title, status, creator, body } = createContentDto;
+
+    const core = this.coreRepository.create({ contentTypeId });
+
+    // core 저장후 id 받는다
+    const coreSave = await this.coreRepository.save(core);
+
+    const { id: contentId } = coreSave;
+    const meta = this.metaRepository.create({
+      contentId,
+      title,
+      creator,
+      status,
+    });
+
+    const bodyFields = this.bodyRepository.create(
+      body.map((elem) => {
+        return {
+          contentId,
+          ...elem,
+        };
+      })
+    );
+    const metaSave = this.metaRepository.save(meta);
+    const bodySave = this.bodyRepository.save(bodyFields);
+
+    await Promise.all([metaSave, bodySave]);
+    return `content core crated`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} content`;
-  }
-
-  update(id: number, updateContentDto: UpdateContentDto) {
-    return `This action updates a #${id} content`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} content`;
+  findManyWithPagination(paginationOptions: IPaginationOptions) {
+    return this.bodyRepository.find({
+      skip: (paginationOptions.page - 1) * paginationOptions.limit,
+      take: paginationOptions.limit,
+    });
   }
 }
