@@ -8,6 +8,7 @@ import { ContentMeta } from './entities/content-meta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
+import { EntityCondition } from 'src/util/types/entity-condition';
 
 /**
  *  콘텐츠 등록순서
@@ -60,13 +61,23 @@ export class ContentService {
     const bodySave = this.bodyRepository.save(bodyFields);
 
     await Promise.all([metaSave, bodySave]);
-    return `content core crated`;
+    return `content created`;
   }
 
   findManyWithPagination(paginationOptions: IPaginationOptions) {
-    return this.bodyRepository.find({
+    return this.metaRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
     });
+  }
+
+  findOne(fields: EntityCondition<ContentMeta>) {
+    return this.metaRepository.findOne({
+      where: fields,
+    });
+  }
+
+  async softDelete(id: number): Promise<void> {
+    await this.metaRepository.softDelete(id);
   }
 }
