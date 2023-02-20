@@ -77,6 +77,21 @@ export class ContentService {
     });
   }
 
+  async findOneWithBody(contentId: number) {
+    const meta = await this.metaRepository.findOne({
+      where: {
+        contentId,
+      },
+    });
+
+    const bodyFields = await this.bodyRepository
+      .createQueryBuilder('content_body')
+      .innerJoinAndSelect('content_body.content.typeId', 'content_type')
+      .getMany();
+
+    return bodyFields;
+  }
+
   async update(updateContentDto: UpdateContentDto) {
     /** core : 수정불가 */
     const { contentId, body } = updateContentDto;
