@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ContentService } from './content.service';
 import { CreateContentDto } from './dto/create-content.dto';
 import { UpdateContentDto } from './dto/update-content.dto';
@@ -14,12 +22,12 @@ export class ContentController {
 
   @Get()
   findAll() {
-    return this.contentService.findAll();
+    return this.contentService.findManyWithPagination();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.contentService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.contentService.findOne({ id });
   }
 
   @Patch(':id')

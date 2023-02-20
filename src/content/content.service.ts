@@ -77,6 +77,30 @@ export class ContentService {
     });
   }
 
+  async update(updateContentDto: UpdateContentDto) {
+    /** core : 수정불가 */
+    const { contentId, body } = updateContentDto;
+    /** meta 수정 */
+    this.metaRepository.save(
+      this.metaRepository.create({
+        contentId,
+        ...updateContentDto,
+      })
+    );
+
+    /** body 수정 */
+    this.bodyRepository.save(
+      this.bodyRepository.create(
+        body.map((elem) => {
+          return {
+            contentId,
+            ...elem,
+          };
+        })
+      )
+    );
+  }
+
   async softDelete(id: number): Promise<void> {
     await this.metaRepository.softDelete(id);
   }
