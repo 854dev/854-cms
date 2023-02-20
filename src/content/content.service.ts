@@ -78,16 +78,15 @@ export class ContentService {
   }
 
   async findOneWithBody(contentId: number) {
-    const meta = await this.metaRepository.findOne({
-      where: {
-        contentId,
-      },
-    });
-
     const bodyFields = await this.bodyRepository
-      .createQueryBuilder('content_body')
-      .innerJoinAndSelect('content_body.content.typeId', 'content_type')
-      .getMany();
+      .createQueryBuilder('cb')
+      .innerJoinAndSelect(
+        'content_body_field',
+        'cbf',
+        'cb.bodyFieldId = cbf.id'
+      )
+      .where('cb.contentId = :cid', { cid: contentId })
+      .getRawMany();
 
     return bodyFields;
   }

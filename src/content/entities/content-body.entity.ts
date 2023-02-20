@@ -1,4 +1,12 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { ContentBodyField } from 'src/content-body-field/entities/content-body-field.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('content_body')
 export class ContentBody {
@@ -15,4 +23,10 @@ export class ContentBody {
 
   @Column({ type: 'text' })
   bodyFieldValue: string;
+
+  @ManyToOne(
+    (type) => ContentBodyField,
+    (contentBodyField) => contentBodyField.id
+  )
+  contentBodyField: ContentBodyField;
 }

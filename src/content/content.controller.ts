@@ -49,7 +49,7 @@ export class ContentController {
     return this.contentService.findOne({ id });
   }
 
-  @Get('body/:id')
+  @Get(':id/body')
   findOneWithBody(@Param('id') id: number) {
     return this.contentService.findOneWithBody(id);
   }
