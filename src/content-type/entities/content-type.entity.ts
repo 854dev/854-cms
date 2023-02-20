@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ContentCore } from '../../content/entities/content-core.entity';
-import { ContentBodyField } from './content-body-field.entity';
+import { ContentBodyField } from '../../content-body-field/entities/content-body-field.entity';
 
 @Entity('content_type')
 export class ContentType {

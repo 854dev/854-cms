@@ -10,6 +10,7 @@ import { TypeOrmConfigService } from './database/db-config-service';
 import { DataSource } from 'typeorm';
 import { CommonModule } from './common/common.module';
 import { ContentTypeModule } from './content-type/content-type.module';
+import { ContentBodyFieldModule } from './content-body-field/content-body-field.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ContentTypeModule } from './content-type/content-type.module';
     ContentModule,
     CommonModule,
     ContentTypeModule,
+    ContentBodyFieldModule,
   ],
   controllers: [AppController],
   providers: [AppService],
