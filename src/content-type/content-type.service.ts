@@ -3,10 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EntityCondition } from 'src/util/types/entity-condition';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { Repository } from 'typeorm';
-import { CreateBodyFieldDto } from '../content-body-field/dto/create-body-field.dto';
 import { CreateContentTypeDto } from './dto/create-content-type.dto';
 import { UpdateContentTypeDto } from './dto/update-content-type.dto';
-import { ContentBodyField } from '../content-body-field/entities/content-body-field.entity';
 import { ContentType } from './entities/content-type.entity';
 
 @Injectable()
