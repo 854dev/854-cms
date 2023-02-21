@@ -2,6 +2,7 @@ import { ContentBodyField } from 'src/content-body-field/entities/content-body-f
 import {
   Column,
   Entity,
+  IsNull,
   JoinColumn,
   ManyToOne,
   OneToOne,
@@ -21,12 +22,9 @@ export class ContentBody {
   @JoinColumn()
   bodyFieldId: number;
 
+  @Column({ type: 'varchar', length: 100 })
+  bodyFieldName: string;
+
   @Column({ type: 'text' })
   bodyFieldValue: string;
-
-  @ManyToOne(
-    (type) => ContentBodyField,
-    (contentBodyField) => contentBodyField.id
-  )
-  contentBodyField: ContentBodyField;
 }

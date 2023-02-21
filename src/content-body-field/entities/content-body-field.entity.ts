@@ -22,10 +22,4 @@ export class ContentBodyField {
 
   @Column({ type: 'varchar', length: 100 })
   fieldName: string;
-
-  @OneToMany(
-    (type) => ContentBody,
-    (contentBody) => contentBody.contentBodyField
-  )
-  contentBody: ContentBody[];
 }
