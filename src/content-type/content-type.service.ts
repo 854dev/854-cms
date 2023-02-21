@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ContentBodyField } from 'src/content-body-field/entities/content-body-field.entity';
 import { EntityCondition } from 'src/util/types/entity-condition';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { Repository } from 'typeorm';
@@ -11,7 +12,9 @@ import { ContentType } from './entities/content-type.entity';
 export class ContentTypeService {
   constructor(
     @InjectRepository(ContentType)
-    private contentTypeRepository: Repository<ContentType>
+    private contentTypeRepository: Repository<ContentType>,
+    @InjectRepository(ContentBodyField)
+    private contentBodyFieldRepository: Repository<ContentBodyField>
   ) {
     return;
   }
@@ -32,10 +35,17 @@ export class ContentTypeService {
     });
   }
 
-  findOne(fields: EntityCondition<ContentType>) {
-    return this.contentTypeRepository.findOne({
+  async findOne(fields: EntityCondition<ContentType>) {
+    const contentType = await this.contentTypeRepository.findOne({
       where: fields,
     });
+    const bodyField = await this.contentBodyFieldRepository.find({
+      where: {
+        contentTypeId: fields.id,
+      },
+    });
+
+    return { ...contentType, bodyField };
   }
 
   update(id: number, updateProfileDto: UpdateContentTypeDto) {
