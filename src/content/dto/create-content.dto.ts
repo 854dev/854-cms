@@ -11,7 +11,10 @@ class ContentBodyDto {
   bodyFieldId: number;
 
   @IsString()
-  fieldValue: string;
+  bodyFieldName: string;
+
+  @IsString()
+  bodyFieldValue: string;
 }
 
 export class CreateContentDto {
