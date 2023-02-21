@@ -78,16 +78,9 @@ export class ContentService {
   }
 
   async findOneWithBody(contentId: number) {
-    const bodyFields = await this.bodyRepository
-      .createQueryBuilder('cb')
-      .innerJoinAndSelect(
-        'content_body_field',
-        'cbf',
-        'cb.bodyFieldId = cbf.id'
-      )
-      .where('cb.contentId = :cid', { cid: contentId })
-      .getRawMany();
-
+    const bodyFields = await this.bodyRepository.findOne({
+      where: { contentId },
+    });
     return bodyFields;
   }
 
