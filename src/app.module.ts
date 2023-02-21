@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { DataSource } from 'typeorm';
+
+import databaseConfig from './config/database.config';
+import { TypeOrmConfigService } from './database/db-config-service';
+import { CommonModule } from './common/common.module';
+import { ContentTypeModule } from './content-type/content-type.module';
+import { ContentBodyFieldModule } from './content-body-field/conetnt-body-field.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AccountModule } from './account/account.module';
 import { ContentModule } from './content/content.module';
-import { ConfigModule } from '@nestjs/config';
-import databaseConfig from './config/database.config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { TypeOrmConfigService } from './database/db-config-service';
-import { DataSource } from 'typeorm';
-import { CommonModule } from './common/common.module';
-import { ContentTypeModule } from './content-type/content-type.module';
-import { ContentBodyFieldModule } from './content-body-field/conetnt-body-field.module';
 
 @Module({
   imports: [
