@@ -9,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { EntityCondition } from 'src/util/types/entity-condition';
+import { debuglog } from 'util';
 
 /**
  *  콘텐츠 등록순서
@@ -78,34 +79,30 @@ export class ContentService {
   }
 
   async findOneWithBody(contentId: number) {
+    const meta = await this.metaRepository.findOne({
+      where: { contentId },
+    });
+
     const bodyFields = await this.bodyRepository.findOne({
       where: { contentId },
     });
-    return bodyFields;
+    console.log({ ...meta, body: bodyFields });
+    return { ...meta, body: bodyFields };
   }
 
   async update(updateContentDto: UpdateContentDto) {
     /** core : 수정불가 */
     const { contentId, body } = updateContentDto;
+
     /** meta 수정 */
-    this.metaRepository.save(
-      this.metaRepository.create({
-        contentId,
-        ...updateContentDto,
-      })
-    );
+    const { title, creator, status } = updateContentDto;
+    this.metaRepository.update({ contentId }, { title, creator, status });
 
     /** body 수정 */
-    this.bodyRepository.save(
-      this.bodyRepository.create(
-        body.map((elem) => {
-          return {
-            contentId,
-            ...elem,
-          };
-        })
-      )
+    const updateBodies = body.map((elem) =>
+      this.bodyRepository.update({ contentId: Number(contentId) }, elem)
     );
+    await Promise.all(updateBodies);
   }
 
   async softDelete(id: number): Promise<void> {

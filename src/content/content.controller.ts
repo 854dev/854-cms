@@ -55,7 +55,8 @@ export class ContentController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateContentDto: UpdateContentDto) {
+  update(@Param('id') id: number, @Body() updateContentDto: UpdateContentDto) {
+    updateContentDto.contentId = id;
     return this.contentService.update(updateContentDto);
   }
 
