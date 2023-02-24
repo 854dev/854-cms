@@ -9,7 +9,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { EntityCondition } from 'src/util/types/entity-condition';
-import { debuglog } from 'util';
 
 /**
  *  콘텐츠 등록순서
@@ -83,7 +82,7 @@ export class ContentService {
       where: { contentId },
     });
 
-    const bodyFields = await this.bodyRepository.findOne({
+    const bodyFields = await this.bodyRepository.find({
       where: { contentId },
     });
     return { ...meta, body: bodyFields };
