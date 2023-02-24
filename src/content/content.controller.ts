@@ -46,13 +46,13 @@ export class ContentController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.contentService.findOne({ id });
-  }
-
-  @Get(':id/body')
-  findOneWithBody(@Param('id') id: number) {
     return this.contentService.findOneWithBody(id);
   }
+
+  // @Get(':id/body')
+  // findOneWithBody(@Param('id') id: number) {
+  //   return this.contentService.findOneWithBody(id);
+  // }
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateContentDto: UpdateContentDto) {

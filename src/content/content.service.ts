@@ -86,7 +86,6 @@ export class ContentService {
     const bodyFields = await this.bodyRepository.findOne({
       where: { contentId },
     });
-    console.log({ ...meta, body: bodyFields });
     return { ...meta, body: bodyFields };
   }
 
