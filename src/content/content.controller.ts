@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   HttpCode,
@@ -11,6 +10,7 @@ import {
   Query,
   DefaultValuePipe,
   ParseIntPipe,
+  Put,
 } from '@nestjs/common';
 import { infinityPagination } from 'src/util/infinity-pagination';
 import { ContentService } from './content.service';
@@ -54,7 +54,7 @@ export class ContentController {
   //   return this.contentService.findOneWithBody(id);
   // }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: number, @Body() updateContentDto: UpdateContentDto) {
     updateContentDto.contentId = id;
     return this.contentService.update(updateContentDto);
