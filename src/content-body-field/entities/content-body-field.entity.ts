@@ -1,6 +1,8 @@
+import { Exclude } from 'class-transformer';
 import { ContentBody } from 'src/content/entities/content-body.entity';
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   OneToMany,
@@ -25,4 +27,8 @@ export class ContentBodyField {
 
   @Column({ type: 'varchar', length: 100 })
   fieldName: string;
+
+  @DeleteDateColumn()
+  @Exclude({ toPlainOnly: true })
+  deletedAt: Date;
 }
