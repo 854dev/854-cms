@@ -11,7 +11,7 @@ export class CreateBodyFieldDto {
   @IsString()
   @MinLength(1)
   @MaxLength(100)
-  fieldNfieldTypeNameame: string;
+  fieldTypeName: string;
 
   @IsString()
   @MinLength(1)
