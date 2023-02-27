@@ -21,5 +21,8 @@ export class ContentBodyField {
   fieldTypeId: number;
 
   @Column({ type: 'varchar', length: 100 })
+  fieldTypeName: string;
+
+  @Column({ type: 'varchar', length: 100 })
   fieldName: string;
 }
