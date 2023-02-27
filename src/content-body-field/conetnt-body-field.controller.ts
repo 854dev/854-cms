@@ -17,7 +17,7 @@ import { ContentBodyFieldService } from './conetnt-body-field.service';
 import { CreateBodyFieldDto } from './dto/create-body-field.dto';
 import { UpdateBodyFieldDto } from './dto/update-body-field.dto';
 
-@Controller('content-type')
+@Controller('body-field')
 export class ContentBodyFieldController {
   constructor(private readonly bodyFieldService: ContentBodyFieldService) {}
 
