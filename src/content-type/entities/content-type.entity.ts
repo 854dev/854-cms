@@ -1,6 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ContentCore } from '../../content/entities/content-core.entity';
 import { ContentBodyField } from '../../content-body-field/entities/content-body-field.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('content_type')
 export class ContentType {
@@ -17,4 +24,8 @@ export class ContentType {
 
   @Column({ type: 'varchar', length: 100 })
   name: string;
+
+  @DeleteDateColumn()
+  @Exclude({ toPlainOnly: true })
+  deletedAt: Date;
 }
