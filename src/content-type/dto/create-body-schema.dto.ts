@@ -1,17 +1,13 @@
 import { IsInt, IsString, MaxLength, MinLength } from 'class-validator';
 
-export class CreateBodyFieldDto {
+export class CreateBodySchemaDto {
   @IsInt()
   contentTypeId: number;
-
-  // todo 조인된 코드 컬럼 밸리데이션
-  @IsInt()
-  fieldTypeId: number;
 
   @IsString()
   @MinLength(1)
   @MaxLength(100)
-  fieldTypeName: string;
+  fieldType: string;
 
   @IsString()
   @MinLength(1)

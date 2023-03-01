@@ -11,7 +11,6 @@ import { Exclude } from 'class-transformer';
 @Unique(['contentTypeName'])
 export class ContentType {
   @PrimaryGeneratedColumn()
-  @Exclude({ toPlainOnly: true })
   contentTypeId: number;
 
   @Column({ type: 'varchar', length: 100 })

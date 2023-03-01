@@ -4,5 +4,5 @@ import { CreateContentTypeDto } from './create-content-type.dto';
 
 export class UpdateContentTypeDto extends PartialType(CreateContentTypeDto) {
   @IsInt()
-  id: number;
+  contentTypeId: number;
 }
