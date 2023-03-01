@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateContentDto } from './dto/create-content.dto';
 import { UpdateContentDto } from './dto/update-content.dto';
 
-import { ContentCore } from './entities/content-core.entity';
 import { ContentBody } from './entities/content-body.entity';
 import { ContentMeta } from './entities/content-meta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -22,8 +21,6 @@ import { EntityCondition } from 'src/util/types/entity-condition';
 @Injectable()
 export class ContentService {
   constructor(
-    @InjectRepository(ContentCore)
-    private coreRepository: Repository<ContentCore>,
     @InjectRepository(ContentBody)
     private bodyRepository: Repository<ContentBody>,
     @InjectRepository(ContentMeta)
@@ -34,16 +31,12 @@ export class ContentService {
 
   async create(createContentDto: CreateContentDto) {
     // core
-    const { contentTypeId, title, status, creator, body } = createContentDto;
+    const { contentTypeId, contentTypeName, title, status, creator, body } =
+      createContentDto;
 
-    const core = this.coreRepository.create({ contentTypeId });
-
-    // core 저장후 id 받는다
-    const coreSave = await this.coreRepository.save(core);
-
-    const { id: contentId } = coreSave;
-    const meta = this.metaRepository.create({
-      contentId,
+    const meta = await this.metaRepository.create({
+      contentTypeId,
+      contentTypeName,
       title,
       creator,
       status,
@@ -52,7 +45,7 @@ export class ContentService {
     const bodyFields = this.bodyRepository.create(
       body.map((elem) => {
         return {
-          contentId,
+          contentId: meta.contentId,
           ...elem,
         };
       })
@@ -61,7 +54,7 @@ export class ContentService {
     const bodySave = this.bodyRepository.save(bodyFields);
 
     await Promise.all([metaSave, bodySave]);
-    return `content created`;
+    return `content created : ${title}`;
   }
 
   findManyWithPagination(paginationOptions: IPaginationOptions) {

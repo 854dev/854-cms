@@ -4,7 +4,6 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,11 +11,14 @@ import {
 @Entity('content_meta')
 export class ContentMeta {
   @PrimaryGeneratedColumn()
-  id: number;
+  contentId: number;
 
   @Column({ type: 'int' })
-  @JoinColumn()
-  contentId: number;
+  @Exclude({ toPlainOnly: true })
+  contentTypeId: number;
+
+  @Column({ type: 'varchar', length: 100 })
+  contentTypeName: string;
 
   @Column({ type: 'varchar', length: 100 })
   title: string;

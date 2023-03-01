@@ -1,29 +1,17 @@
-import { ContentBodyField } from 'src/content-body-field/entities/content-body-field.entity';
-import {
-  Column,
-  Entity,
-  IsNull,
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Exclude } from 'class-transformer';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('content_body')
 export class ContentBody {
   @PrimaryGeneratedColumn()
+  @Exclude({ toPlainOnly: true })
   id: number;
 
   @Column({ type: 'int' })
-  @JoinColumn()
   contentId: number;
 
-  @Column({ type: 'int' })
-  @JoinColumn()
-  bodyFieldId: number;
-
   @Column({ type: 'varchar', length: 100 })
-  bodyFieldName: string;
+  bodyField: string;
 
   @Column({ type: 'text' })
   bodyFieldValue: string;

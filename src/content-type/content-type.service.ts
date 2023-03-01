@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ContentBodyField } from 'src/content-body-field/entities/content-body-field.entity';
+import { ContentBodySchema } from 'src/content-type/entities/content-body-schema.entity';
 import { EntityCondition } from 'src/util/types/entity-condition';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { Repository } from 'typeorm';
@@ -13,8 +13,8 @@ export class ContentTypeService {
   constructor(
     @InjectRepository(ContentType)
     private contentTypeRepository: Repository<ContentType>,
-    @InjectRepository(ContentBodyField)
-    private contentBodyFieldRepository: Repository<ContentBodyField>
+    @InjectRepository(ContentBodySchema)
+    private ContentBodySchemaRepository: Repository<ContentBodySchema>
   ) {
     return;
   }
@@ -25,7 +25,7 @@ export class ContentTypeService {
       this.contentTypeRepository.create(createContentTypeDto)
     );
 
-    return `content type added : ${createContentTypeDto.name}`;
+    return `content type added : ${createContentTypeDto.contentTypeName}`;
   }
 
   findManyWithPagination(paginationOptions: IPaginationOptions) {
@@ -39,25 +39,28 @@ export class ContentTypeService {
     const contentType = await this.contentTypeRepository.findOne({
       where: fields,
     });
-    const bodyField = await this.contentBodyFieldRepository.find({
+    const bodyField = await this.ContentBodySchemaRepository.find({
       where: {
-        contentTypeId: fields.id,
+        contentTypeId: fields.contentTypeId,
       },
     });
 
     return { ...contentType, bodyField };
   }
 
-  update(id: number, updateProfileDto: UpdateContentTypeDto) {
+  update(updateProfileDto: UpdateContentTypeDto) {
     return this.contentTypeRepository.save(
       this.contentTypeRepository.create({
-        id,
         ...updateProfileDto,
       })
     );
   }
 
-  async softDelete(id: number): Promise<void> {
-    await this.contentTypeRepository.softDelete(id);
+  async softDelete(id: number) {
+    const bodydelete = await this.ContentBodySchemaRepository.delete({
+      contentTypeId: id,
+    });
+    const typedelete = this.contentTypeRepository.delete(id);
+    return Promise.all([bodydelete, typedelete]);
   }
 }
