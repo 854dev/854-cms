@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity('content_body_schema')
 @Unique(['fieldType', 'fieldName'])
-export class ContentBodyField {
+export class ContentBodySchema {
   @PrimaryGeneratedColumn()
   @Exclude({ toPlainOnly: true })
   id: number;

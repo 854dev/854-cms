@@ -3,10 +3,10 @@ import { ContentTypeService } from './content-type.service';
 import { ContentTypeController } from './content-type.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContentType } from './entities/content-type.entity';
-import { ContentBodyField } from 'src/content-body-field/entities/content-body-field.entity';
+import { ContentBodySchema } from 'src/content-type/entities/content-body-schema.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ContentType, ContentBodyField])],
+  imports: [TypeOrmModule.forFeature([ContentType, ContentBodySchema])],
   controllers: [ContentTypeController],
   providers: [ContentTypeService],
 })
