@@ -1,8 +1,10 @@
+import { Exclude } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('content_body')
 export class ContentBody {
   @PrimaryGeneratedColumn()
+  @Exclude({ toPlainOnly: true })
   id: number;
 
   @Column({ type: 'int' })
