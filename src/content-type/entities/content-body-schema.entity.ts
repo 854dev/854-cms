@@ -2,7 +2,7 @@ import { Exclude } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity('content_body_schema')
-@Unique(['fieldType', 'fieldName'])
+@Unique(['contentTypeId', 'fieldName'])
 export class ContentBodySchema {
   @PrimaryGeneratedColumn()
   @Exclude({ toPlainOnly: true })
