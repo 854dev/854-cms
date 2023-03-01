@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   HttpCode,
@@ -11,9 +10,11 @@ import {
   DefaultValuePipe,
   Query,
   ParseIntPipe,
+  Put,
 } from '@nestjs/common';
 import { infinityPagination } from 'src/util/infinity-pagination';
 import { ContentTypeService } from './content-type.service';
+import { CreateBodySchemaDto } from './dto/create-body-schema.dto';
 import { CreateContentTypeDto } from './dto/create-content-type.dto';
 import { UpdateContentTypeDto } from './dto/update-content-type.dto';
 
@@ -45,17 +46,14 @@ export class ContentTypeController {
     );
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.contentTypeService.findOne({ id });
+  @Get(':contentTypeId')
+  findOne(@Param('contentTypeId') contentTypeId?: number) {
+    return this.contentTypeService.findOne({ contentTypeId });
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateContentTypeDto: UpdateContentTypeDto
-  ) {
-    return this.contentTypeService.update(+id, updateContentTypeDto);
+  @Put()
+  update(@Body() updateContentTypeDto: UpdateContentTypeDto) {
+    return this.contentTypeService.update(updateContentTypeDto);
   }
 
   @Delete(':id')
