@@ -14,7 +14,6 @@ import {
 } from '@nestjs/common';
 import { infinityPagination } from 'src/util/infinity-pagination';
 import { ContentTypeService } from './content-type.service';
-import { CreateBodySchemaDto } from './dto/create-body-schema.dto';
 import { CreateContentTypeDto } from './dto/create-content-type.dto';
 import { UpdateContentTypeDto } from './dto/update-content-type.dto';
 

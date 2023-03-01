@@ -60,7 +60,7 @@ export class ContentTypeService {
     const bodydelete = await this.ContentBodySchemaRepository.delete({
       contentTypeId: id,
     });
-    const typedelete = this.contentTypeRepository.softDelete(id);
+    const typedelete = this.contentTypeRepository.delete(id);
     return Promise.all([bodydelete, typedelete]);
   }
 }

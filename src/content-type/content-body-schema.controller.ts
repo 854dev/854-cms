@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Param,
   Delete,
   HttpCode,
   HttpStatus,
@@ -12,8 +11,8 @@ import {
 import { CreateBodySchemaDto } from './dto/create-body-schema.dto';
 import { ContentBodySchemaService } from './content-body-schema.service';
 
-@Controller('content-type')
-export class ContentTypeController {
+@Controller('content-body-schema')
+export class ContentBodySchemaController {
   constructor(
     private readonly contentBodySchemaService: ContentBodySchemaService
   ) {}
