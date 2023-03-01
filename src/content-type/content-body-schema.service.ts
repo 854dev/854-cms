@@ -21,11 +21,16 @@ export class ContentBodySchemaService {
     return `field added : ${createBodySchemaDto.fieldName}`;
   }
 
-  findMany() {
-    return this.contentBodySchemaRepository.find();
+  findMany(contentTypeId?: number, fieldName?: string) {
+    return this.contentBodySchemaRepository.find({
+      where: {
+        contentTypeId,
+        fieldName,
+      },
+    });
   }
 
-  async delete(contentTypeId: number, fieldName: string): Promise<void> {
+  async delete(contentTypeId: number, fieldName?: string): Promise<void> {
     await this.contentBodySchemaRepository.delete({
       contentTypeId,
       fieldName,
