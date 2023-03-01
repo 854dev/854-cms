@@ -3,18 +3,13 @@ import { CommonCode } from 'src/common/entities/common-code.entity';
 import { ContentBody } from 'src/content/entities/content-body.entity';
 import { ContentCore } from 'src/content/entities/content-core.entity';
 import { ContentMeta } from 'src/content/entities/content-meta.entity';
-import { ContentBodyField } from 'src/content-body-field/entities/content-body-field.entity';
 import { ContentType } from 'src/content-type/entities/content-type.entity';
+import { ContentBodySchema } from 'src/content-type/entities/content-body-schema.entity';
 
 const entityMap = {
   account: [User],
-  content: [
-    ContentBody,
-    ContentCore,
-    ContentMeta,
-    ContentBodyField,
-    ContentType,
-  ],
+  content: [ContentBody, ContentCore, ContentMeta],
+  contentType: [ContentType, ContentBodySchema],
   common: [CommonCode],
 } as const;
 
