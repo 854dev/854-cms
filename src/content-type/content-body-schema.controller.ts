@@ -24,17 +24,12 @@ export class ContentBodySchemaController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findBy(@Query() contentTypeId: number, @Query() fieldName: string) {
-    await this.contentBodySchemaService.findMany(contentTypeId, fieldName);
+  findBy(@Query('contentTypeId') contentTypeId: number) {
+    return this.contentBodySchemaService.findMany({ contentTypeId });
   }
 
   @Delete()
-  async remove(
-    @Body() condition: { contentTypeId: number; fieldName: string }
-  ) {
-    await this.contentBodySchemaService.delete(
-      condition.contentTypeId,
-      condition.fieldName
-    );
+  async remove(@Query('contentTypeId') contentTypeId: number) {
+    await this.contentBodySchemaService.delete({ contentTypeId });
   }
 }

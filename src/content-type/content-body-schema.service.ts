@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { ContentBodySchema } from 'src/content-type/entities/content-body-schema.entity';
 import { CreateBodySchemaDto } from 'src/content-type/dto/create-body-schema.dto';
+import { EntityCondition } from 'src/util/types/entity-condition';
 
 @Injectable()
 export class ContentBodySchemaService {
@@ -21,19 +22,16 @@ export class ContentBodySchemaService {
     return `field added : ${createBodySchemaDto.fieldName}`;
   }
 
-  findMany(contentTypeId?: number, fieldName?: string) {
-    return this.contentBodySchemaRepository.find({
+  findMany(fields: EntityCondition<ContentBodySchema>) {
+    const bodyField = this.contentBodySchemaRepository.find({
       where: {
-        contentTypeId,
-        fieldName,
+        contentTypeId: fields.contentTypeId,
       },
     });
+    return bodyField;
   }
 
-  async delete(contentTypeId: number, fieldName?: string): Promise<void> {
-    await this.contentBodySchemaRepository.delete({
-      contentTypeId,
-      fieldName,
-    });
+  async delete(where: EntityCondition<ContentBodySchema>): Promise<void> {
+    await this.contentBodySchemaRepository.delete(where);
   }
 }
