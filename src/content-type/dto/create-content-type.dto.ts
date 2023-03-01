@@ -4,5 +4,5 @@ export class CreateContentTypeDto {
   @IsString()
   @MinLength(1)
   @MaxLength(100)
-  name: string;
+  contentTypeName: string;
 }

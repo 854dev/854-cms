@@ -25,7 +25,7 @@ export class ContentTypeService {
       this.contentTypeRepository.create(createContentTypeDto)
     );
 
-    return `content type added : ${createContentTypeDto.name}`;
+    return `content type added : ${createContentTypeDto.contentTypeName}`;
   }
 
   findManyWithPagination(paginationOptions: IPaginationOptions) {
@@ -41,17 +41,16 @@ export class ContentTypeService {
     });
     const bodyField = await this.contentBodyFieldRepository.find({
       where: {
-        contentTypeId: fields.id,
+        contentTypeId: fields.contentTypeId,
       },
     });
 
     return { ...contentType, bodyField };
   }
 
-  update(id: number, updateProfileDto: UpdateContentTypeDto) {
+  update(updateProfileDto: UpdateContentTypeDto) {
     return this.contentTypeRepository.save(
       this.contentTypeRepository.create({
-        id,
         ...updateProfileDto,
       })
     );
