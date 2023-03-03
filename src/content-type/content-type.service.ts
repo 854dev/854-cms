@@ -39,13 +39,13 @@ export class ContentTypeService {
     const contentType = await this.contentTypeRepository.findOne({
       where: fields,
     });
-    const bodyShcema = await this.ContentBodySchemaRepository.find({
+    const bodySchema = await this.ContentBodySchemaRepository.find({
       where: {
         contentTypeId: fields.contentTypeId,
       },
     });
 
-    return { ...contentType, bodyShcema };
+    return { ...contentType, bodySchema };
   }
 
   update(updateProfileDto: UpdateContentTypeDto) {
