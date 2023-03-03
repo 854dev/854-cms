@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContentTypeController } from './content-type.controller';
-import { ContentTypeService } from './content-type.service';
+import { ContentTypeController } from '../content-type.controller';
+import { ContentTypeService } from '../content-type.service';
 
 describe('ContentTypeController', () => {
   let controller: ContentTypeController;
