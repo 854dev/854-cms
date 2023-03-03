@@ -7,6 +7,7 @@ import {
   HttpCode,
   HttpStatus,
   Query,
+  Param,
 } from '@nestjs/common';
 import { CreateBodySchemaDto } from './dto/create-body-schema.dto';
 import { ContentBodySchemaService } from './content-body-schema.service';
@@ -28,8 +29,8 @@ export class ContentBodySchemaController {
     return this.contentBodySchemaService.findMany({ contentTypeId });
   }
 
-  @Delete()
-  async remove(@Query('contentTypeId') contentTypeId: number) {
-    await this.contentBodySchemaService.delete({ contentTypeId });
+  @Delete(':id')
+  async remove(@Param('id') id: number) {
+    await this.contentBodySchemaService.delete({ id });
   }
 }
