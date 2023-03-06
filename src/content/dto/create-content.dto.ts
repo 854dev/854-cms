@@ -12,7 +12,7 @@ class ContentBodyDto {
   bodyFieldId: number;
 
   @IsString()
-  bodyFieldName: string;
+  bodyField: string;
 
   @IsString()
   bodyFieldValue: string;
