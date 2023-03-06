@@ -24,7 +24,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
         ...entityMap.account,
         ...entityMap.content,
         ...entityMap.common,
-        ...entityMap.contentType,
       ],
       migrations: [],
       cli: {

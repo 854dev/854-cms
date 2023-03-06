@@ -30,7 +30,7 @@ export class ContentBodySchemaController {
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: number) {
-    await this.contentBodySchemaService.delete({ id });
+  async remove(@Param('id') schemaId: number) {
+    await this.contentBodySchemaService.delete({ schemaId });
   }
 }

@@ -6,17 +6,7 @@ import {
   MinLength,
   ValidateNested,
 } from 'class-validator';
-
-class ContentBodyDto {
-  @IsInt()
-  bodyFieldId: number;
-
-  @IsString()
-  bodyField: string;
-
-  @IsString()
-  bodyFieldValue: string;
-}
+import { ContentBodyDto } from './content-body-dto';
 
 export class CreateContentDto {
   // type
@@ -54,7 +44,12 @@ export class CreateContentDto {
   // TODO 별도 validator 로 검증
   @ValidateNested()
   @ApiProperty({
-    example: `{bodyFieldId: number, bodyFieldName: string, bodyFieldValue: string,}[]`,
+    example: [
+      {
+        schemaId: 'number',
+        schemaValue: 'string',
+      },
+    ],
   })
   body: ContentBodyDto[];
 }

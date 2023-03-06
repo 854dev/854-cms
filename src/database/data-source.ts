@@ -15,12 +15,7 @@ export const AppDataSource = new DataSource({
   dropSchema: false,
   keepConnectionAlive: true,
   logging: process.env.NODE_ENV !== 'production',
-  entities: [
-    ...entityMap.account,
-    ...entityMap.content,
-    ...entityMap.common,
-    ...entityMap.contentType,
-  ],
+  entities: [...entityMap.account, ...entityMap.content, ...entityMap.common],
   migrations: migrations,
   extra: {
     // based on https://node-postgres.com/api/pool

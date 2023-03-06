@@ -1,18 +1,25 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { ContentBodySchema } from './content-body-schema.entity';
 
 @Entity('content_body')
 export class ContentBody {
   @PrimaryGeneratedColumn()
-  @Exclude({ toPlainOnly: true })
+  @Exclude()
   id: number;
 
   @Column({ type: 'int' })
+  @Exclude()
   contentId: number;
 
-  @Column({ type: 'varchar', length: 100 })
-  bodyField: string;
+  @Column({ type: 'int' })
+  @Exclude()
+  schemaId: number;
 
-  @Column({ type: 'text' })
-  bodyFieldValue: string;
+  @Column({ type: 'text', nullable: true })
+  schemaValue: string;
+
+  @ManyToOne(() => ContentBodySchema, (schema) => schema.contentBody)
+  @Exclude({ toClassOnly: true })
+  contentBodySchema: ContentBodySchema;
 }
