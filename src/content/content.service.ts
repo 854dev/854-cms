@@ -34,7 +34,7 @@ export class ContentService {
     const { contentTypeId, contentTypeName, title, status, creator, body } =
       createContentDto;
 
-    const meta = await this.metaRepository.create({
+    const meta = this.metaRepository.create({
       contentTypeId,
       contentTypeName,
       title,
@@ -42,18 +42,18 @@ export class ContentService {
       status,
     });
 
+    const metaSave = await this.metaRepository.save(meta);
+
     const bodyFields = this.bodyRepository.create(
       body.map((elem) => {
         return {
-          contentId: meta.contentId,
           ...elem,
+          contentId: metaSave.contentId,
         };
       })
     );
-    const metaSave = this.metaRepository.save(meta);
-    const bodySave = this.bodyRepository.save(bodyFields);
 
-    await Promise.all([metaSave, bodySave]);
+    const bodySave = await this.bodyRepository.save(bodyFields);
     return `content created : ${title}`;
   }
 
