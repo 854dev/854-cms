@@ -5,10 +5,10 @@ import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 @Unique(['contentTypeId', 'fieldName'])
 export class ContentBodySchema {
   @PrimaryGeneratedColumn()
-  @Exclude({ toPlainOnly: true })
   fieldId: number;
 
   @Column({ type: 'int' })
+  @Exclude({ toClassOnly: true })
   contentTypeId: number;
 
   @Column({ type: 'varchar', length: 100 })
