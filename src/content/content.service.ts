@@ -78,18 +78,27 @@ export class ContentService {
       where: { contentId },
     });
 
-    /** contentBodySchema 에서 기본값을 넣어 만든다 */
     const bodySchema = await this.schemaRepository.find({
-      where: {
-        contentTypeId: meta.contentTypeId,
-      },
+      where: { contentTypeId: meta.contentTypeId },
     });
 
-    const bodyFields = await this.bodyRepository.find({
+    const body = await this.bodyRepository.find({
       where: { contentId },
     });
 
-    return { ...meta, body: bodyFields };
+    const result3 = bodySchema.map((elem) => {
+      const contentBody = body.find(
+        (eachbody) => eachbody.schemaId === elem.schemaId
+      );
+      const schemaValue = contentBody ? contentBody.schemaValue : '';
+
+      return {
+        ...elem,
+        schemaValue,
+      };
+    });
+
+    return { ...meta, body: result3 };
   }
 
   async update(updateContentDto: UpdateContentDto) {
