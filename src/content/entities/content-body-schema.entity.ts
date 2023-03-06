@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ContentBody } from './content-body.entity';
 
-@Entity('content_body_field')
+@Entity('content_body_schema')
 @Unique(['contentTypeId', 'schemaName'])
 export class ContentBodySchema {
   @PrimaryGeneratedColumn()
