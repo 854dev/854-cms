@@ -13,8 +13,8 @@ export class ContentBody {
 
   @Column({ type: 'int' })
   @Exclude({ toClassOnly: true })
-  fieldId: number;
+  schemaId: number;
 
   @Column({ type: 'text', nullable: true })
-  FieldValue: string;
+  schemaValue: string;
 }
