@@ -1,5 +1,12 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
+import { ContentBody } from './content-body.entity';
 
 @Entity('content_body_field')
 @Unique(['contentTypeId', 'fieldName'])
@@ -16,4 +23,8 @@ export class ContentBodySchema {
 
   @Column({ type: 'varchar', length: 100 })
   schemaName: string;
+
+  @OneToMany(() => ContentBody, (body) => body.contentBodySchema)
+  @Exclude({ toClassOnly: true })
+  contentBody: ContentBody[];
 }
