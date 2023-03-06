@@ -9,7 +9,7 @@ import {
 import { ContentBody } from './content-body.entity';
 
 @Entity('content_body_field')
-@Unique(['contentTypeId', 'fieldName'])
+@Unique(['contentTypeId', 'schemaName'])
 export class ContentBodySchema {
   @PrimaryGeneratedColumn()
   schemaId: number;
