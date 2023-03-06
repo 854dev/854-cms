@@ -19,7 +19,7 @@ export class ContentBodySchemaService {
     this.contentBodySchemaRepository.save(
       this.contentBodySchemaRepository.create(createBodySchemaDto)
     );
-    return `field added : ${createBodySchemaDto.fieldName}`;
+    return `field added : ${createBodySchemaDto.schemaName}`;
   }
 
   findMany(fields: EntityCondition<ContentBodySchema>) {
