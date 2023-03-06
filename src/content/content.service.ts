@@ -8,7 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { EntityCondition } from 'src/util/types/entity-condition';
-import { ContentBodySchema } from './entities/content-body-schema.entity';
+import { ContentBodySchema } from './entities/content-body-field.entity';
 
 /**
  *  콘텐츠 등록순서

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ContentBodySchema } from 'src/content/entities/content-body-schema.entity';
+import { ContentBodySchema } from 'src/content/entities/content-body-field.entity';
 import { EntityCondition } from 'src/util/types/entity-condition';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { Repository } from 'typeorm';

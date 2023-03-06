@@ -1,12 +1,12 @@
 import { Exclude } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
-@Entity('content_body_schema')
+@Entity('content_body_field')
 @Unique(['contentTypeId', 'fieldName'])
-export class ContentBodySchema {
+export class ContentBodyField {
   @PrimaryGeneratedColumn()
   @Exclude({ toPlainOnly: true })
-  id: number;
+  fieldId: number;
 
   @Column({ type: 'int' })
   contentTypeId: number;
