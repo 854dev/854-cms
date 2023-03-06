@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { EntityCondition } from 'src/util/types/entity-condition';
+import { ContentBodySchema } from './entities/content-body-schema.entity';
 
 /**
  *  콘텐츠 등록순서
@@ -24,7 +25,9 @@ export class ContentService {
     @InjectRepository(ContentBody)
     private bodyRepository: Repository<ContentBody>,
     @InjectRepository(ContentMeta)
-    private metaRepository: Repository<ContentMeta>
+    private metaRepository: Repository<ContentMeta>,
+    @InjectRepository(ContentBodySchema)
+    private schemaRepository: Repository<ContentBodySchema>
   ) {
     return;
   }
@@ -75,9 +78,17 @@ export class ContentService {
       where: { contentId },
     });
 
+    /** contentBodySchema 에서 기본값을 넣어 만든다 */
+    const bodySchema = await this.schemaRepository.find({
+      where: {
+        contentTypeId: meta.contentTypeId,
+      },
+    });
+
     const bodyFields = await this.bodyRepository.find({
       where: { contentId },
     });
+
     return { ...meta, body: bodyFields };
   }
 

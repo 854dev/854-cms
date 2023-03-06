@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { ContentBodySchema } from 'src/content-type/entities/content-body-schema.entity';
-import { CreateBodySchemaDto } from 'src/content-type/dto/create-body-schema.dto';
+import { ContentBodySchema } from 'src/content/entities/content-body-schema.entity';
+import { CreateBodySchemaDto } from 'src/content/dto/create-body-schema.dto';
 import { EntityCondition } from 'src/util/types/entity-condition';
 
 @Injectable()
