@@ -10,11 +10,11 @@ export class CreateBodySchemaDto {
   @MinLength(1)
   @MaxLength(100)
   @ApiProperty()
-  fieldType: string;
+  schemaType: string;
 
   @IsString()
   @MinLength(1)
   @MaxLength(100)
   @ApiProperty()
-  fieldName: string;
+  schemaName: string;
 }
