@@ -14,7 +14,7 @@ export class ContentMeta {
   contentId: number;
 
   @Column({ type: 'int' })
-  @Exclude({ toPlainOnly: true })
+  @Exclude()
   contentTypeId: number;
 
   @Column({ type: 'varchar', length: 100 })
@@ -35,7 +35,6 @@ export class ContentMeta {
   updatedAt: Date;
 
   @DeleteDateColumn()
-  @Exclude({ toPlainOnly: true })
   deletedAt: Date;
 
   @Column({ type: 'varchar', length: 100 })

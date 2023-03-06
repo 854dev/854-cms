@@ -5,15 +5,15 @@ import { ContentBodySchema } from './content-body-schema.entity';
 @Entity('content_body')
 export class ContentBody {
   @PrimaryGeneratedColumn()
-  @Exclude({ toClassOnly: true })
+  @Exclude()
   id: number;
 
   @Column({ type: 'int' })
-  @Exclude({ toClassOnly: true })
+  @Exclude()
   contentId: number;
 
   @Column({ type: 'int' })
-  @Exclude({ toClassOnly: true })
+  @Exclude()
   schemaId: number;
 
   @Column({ type: 'text', nullable: true })
