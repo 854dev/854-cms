@@ -91,10 +91,12 @@ export class ContentService {
         (eachbody) => eachbody.schemaId === elem.schemaId
       );
       const schemaValue = contentBody ? contentBody.schemaValue : '';
+      const schemaName = elem.schemaName;
 
       return {
         ...elem,
         schemaValue,
+        schemaName,
       };
     });
 
@@ -110,10 +112,15 @@ export class ContentService {
     this.metaRepository.update({ contentId }, { title, creator, status });
 
     /** body 수정 */
-    const updateBodies = body.map((elem) =>
-      this.bodyRepository.update({ contentId: Number(contentId) }, elem)
-    );
-    await Promise.all(updateBodies);
+    const updateBodies = body.map((elem) => {
+      return { ...elem, contentId };
+    });
+    const updateBodies_Q = this.bodyRepository.upsert(updateBodies, [
+      'contentId',
+      'schemaId',
+    ]);
+    await updateBodies_Q;
+    return `updated : ${title}`;
   }
 
   async softDelete(id: number): Promise<void> {
