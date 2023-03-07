@@ -24,7 +24,9 @@ export class ContentBodySchema {
   @Column({ type: 'varchar', length: 100 })
   schemaName: string;
 
-  @OneToMany(() => ContentBody, (body) => body.contentBodySchema)
+  @OneToMany(() => ContentBody, (body) => body.contentBodySchema, {
+    cascade: true,
+  })
   @Exclude({ toClassOnly: true })
   contentBody: ContentBody[];
 }
