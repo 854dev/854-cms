@@ -64,6 +64,9 @@ export class ContentService {
     return this.metaRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
+      order: {
+        createdAt: 'desc',
+      },
     });
   }
 
