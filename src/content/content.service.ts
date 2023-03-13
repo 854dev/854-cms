@@ -6,10 +6,8 @@ import { ContentBody } from './entities/content-body.entity';
 import { ContentMeta } from './entities/content-meta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { EntityCondition } from 'src/util/types/entity-condition';
 import { ContentBodySchema } from './entities/content-body-schema.entity';
-import { Tag } from 'src/tag/entities/tag.entity';
 
 /**
  *  콘텐츠 등록순서
@@ -19,6 +17,12 @@ import { Tag } from 'src/tag/entities/tag.entity';
  *  4. content meta 추가
  *  5. content body 추가
  */
+
+interface IfindPaginationOption {
+  contentTypeId?: number;
+  page: number;
+  limit: number;
+}
 
 @Injectable()
 export class ContentService {
@@ -70,10 +74,13 @@ export class ContentService {
     return `content created : ${title}`;
   }
 
-  findManyWithPagination(paginationOptions: IPaginationOptions) {
+  findManyWithPagination(paginationOptions: IfindPaginationOption) {
     return this.metaRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
+      where: {
+        contentTypeId: paginationOptions.contentTypeId,
+      },
       order: {
         createdAt: 'desc',
       },

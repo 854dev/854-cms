@@ -30,7 +30,8 @@ export class ContentController {
   @HttpCode(HttpStatus.OK)
   async findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query('contentTypeId', ParseIntPipe) contentTypeId?: number
   ): Promise<any> {
     if (limit > 50) {
       limit = 50;
@@ -39,6 +40,7 @@ export class ContentController {
       await this.contentService.findManyWithPagination({
         page,
         limit,
+        contentTypeId,
       }),
       { page, limit }
     );
