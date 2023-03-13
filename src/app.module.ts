@@ -11,6 +11,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AccountModule } from './account/account.module';
 import { ContentModule } from './content/content.module';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ContentModule } from './content/content.module';
     AccountModule,
     ContentModule,
     CommonModule,
+    TagModule,
   ],
   controllers: [AppController],
   providers: [AppService],
