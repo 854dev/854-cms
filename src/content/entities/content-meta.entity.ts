@@ -43,7 +43,10 @@ export class ContentMeta {
   @Column({ type: 'varchar', length: 100 })
   status: string;
 
-  @ManyToMany(() => Tag, (tag) => tag.contentMeta, { cascade: true })
+  @ManyToMany(() => Tag, (tag) => tag.contentMeta, {
+    cascade: true,
+    eager: true,
+  })
   @JoinTable()
   tags: Tag[];
 }

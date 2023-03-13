@@ -7,6 +7,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { ContentBodyDto } from './content-body-dto';
+import { ContentTagDto } from './content-tag-dto';
 
 export class CreateContentDto {
   // type
@@ -52,4 +53,15 @@ export class CreateContentDto {
     ],
   })
   body: ContentBodyDto[];
+
+  @ValidateNested()
+  @ApiProperty({
+    example: [
+      {
+        tagId: 'number',
+        name: 'string',
+      },
+    ],
+  })
+  tags: ContentTagDto[];
 }

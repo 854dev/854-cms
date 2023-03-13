@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { TagService } from './tag.service';
 import { CreateTagDto } from './dto/create-tag.dto';
@@ -26,12 +27,15 @@ export class TagController {
   }
 
   @Patch(':tagId')
-  update(@Param('tagId') tagId: string, @Body() updateTagDto: UpdateTagDto) {
+  update(
+    @Param('tagId', ParseIntPipe) tagId: number,
+    @Body() updateTagDto: UpdateTagDto
+  ) {
     return this.tagService.update(tagId, updateTagDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.tagService.remove(+id);
   }
 }
