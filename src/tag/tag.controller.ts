@@ -3,10 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   ParseIntPipe,
+  Put,
 } from '@nestjs/common';
 import { TagService } from './tag.service';
 import { CreateTagDto } from './dto/create-tag.dto';
@@ -26,7 +26,7 @@ export class TagController {
     return this.tagService.findAll();
   }
 
-  @Patch(':tagId')
+  @Put(':tagId')
   update(
     @Param('tagId', ParseIntPipe) tagId: number,
     @Body() updateTagDto: UpdateTagDto
