@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 import { IPaginationOptions } from 'src/util/types/pagination-option';
 import { EntityCondition } from 'src/util/types/entity-condition';
 import { ContentBodySchema } from './entities/content-body-schema.entity';
+import { Tag } from 'src/tag/entities/tag.entity';
 
 /**
  *  콘텐츠 등록순서
@@ -120,8 +121,18 @@ export class ContentService {
     const { contentId, body } = updateContentDto;
 
     /** meta 수정 */
-    const { title, creator, status } = updateContentDto;
+    const { title, creator, status, tags } = updateContentDto;
     this.metaRepository.update({ contentId }, { title, creator, status });
+
+    /** meta.tags 수정 */
+    const currentMeta = await this.metaRepository.findOne({
+      where: { contentId },
+    });
+    this.metaRepository
+      .createQueryBuilder()
+      .relation(ContentMeta, 'tags')
+      .of(currentMeta)
+      .addAndRemove(tags, currentMeta.tags);
 
     /** body 수정 */
     const updateBodies = body.map((elem) => {
