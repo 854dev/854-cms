@@ -34,8 +34,15 @@ export class ContentService {
 
   async create(createContentDto: CreateContentDto) {
     // core
-    const { contentTypeId, contentTypeName, title, status, creator, body } =
-      createContentDto;
+    const {
+      contentTypeId,
+      contentTypeName,
+      title,
+      status,
+      creator,
+      tags,
+      body,
+    } = createContentDto;
 
     const meta = this.metaRepository.create({
       contentTypeId,
@@ -43,6 +50,7 @@ export class ContentService {
       title,
       creator,
       status,
+      tags,
     });
 
     const metaSave = await this.metaRepository.save(meta);
@@ -57,6 +65,7 @@ export class ContentService {
     );
 
     const bodySave = await this.bodyRepository.save(bodyFields);
+
     return `content created : ${title}`;
   }
 
