@@ -1,9 +1,12 @@
 import { Exclude } from 'class-transformer';
+import { Tag } from 'src/tag/entities/tag.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -39,4 +42,8 @@ export class ContentMeta {
 
   @Column({ type: 'varchar', length: 100 })
   status: string;
+
+  @ManyToMany(() => Tag, (tag) => tag.contentMeta, { cascade: true })
+  @JoinTable()
+  tags: Tag[];
 }
