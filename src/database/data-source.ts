@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import entityMap from './entity-map';
+import entityMap, { entityMapArray } from './entity-map';
 import migrations from './migration-map';
 
 export const AppDataSource = new DataSource({
@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   dropSchema: false,
   keepConnectionAlive: true,
   logging: process.env.NODE_ENV !== 'production',
-  entities: [...entityMap.account, ...entityMap.content, ...entityMap.common],
+  entities: entityMapArray,
   migrations: migrations,
   extra: {
     // based on https://node-postgres.com/api/pool

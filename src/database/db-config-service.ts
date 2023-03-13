@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import entityMap from './entity-map';
+import entityMap, { entityMapArray } from './entity-map';
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
@@ -20,11 +20,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       dropSchema: false,
       keepConnectionAlive: true,
       logging: this.configService.get('app.nodeEnv') !== 'production',
-      entities: [
-        ...entityMap.account,
-        ...entityMap.content,
-        ...entityMap.common,
-      ],
+      entities: entityMapArray,
       migrations: [],
       cli: {
         entitiesDir: 'src',
